@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Etik Hacker Kulübü | İstanbul Arel Üniversitesi</title>
+  <style>
+    :root {
+      --bg: #050910;
+      --bg-soft: #0c1424;
+      --card: #0f1a2e;
+      --card-soft: #122037;
+      --text: #e9ecf5;
+      --muted: #9aa5b5;
+      --accent: #5ad0ff;
+      --accent-2: #7ef29a;
+      --border: rgba(255, 255, 255, 0.08);
+      --shadow: 0 15px 45px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(90, 208, 255, 0.08), transparent 32%),
+                  radial-gradient(circle at 80% 10%, rgba(126, 242, 154, 0.08), transparent 28%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+      background: rgba(7, 12, 22, 0.7);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-bar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 1rem;
+    }
+
+    nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+
+    nav a:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(90, 208, 255, 0.06);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: left;
+      padding: 140px 20px 80px;
+      background:
+      linear-gradient(135deg, rgba(5, 9, 16, 0.6), rgba(5, 9, 16, 0.3)),
+      url("images/hero.png") center/cover no-repeat;
+    }
+
+    .hero-card {
+      max-width: 1000px;
+      width: 100%;
+      padding: 28px;
+      background: rgba(12, 20, 36, 0.78);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(3px);
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      letter-spacing: 0.01em;
+    }
+
+    .subtitle {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .intro {
+      margin: 0 0 20px;
+      max-width: 760px;
+      color: #c7cfda;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #04101a;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(90, 208, 255, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(90, 208, 255, 0.32);
+    }
+
+    main {
+      padding: 40px 20px 70px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-top: 60px;
+      scroll-margin-top: 110px;
+      background: rgba(12, 20, 36, 0.6);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      letter-spacing: 0.01em;
+    }
+
+    section p {
+      margin: 0 0 12px;
+      color: #cdd4df;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .card {
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      transition: transform 0.15s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    /* FAQ */
+    details {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    details + details {
+      margin-top: 10px;
+    }
+
+    details:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details[open] summary {
+      color: var(--accent);
+    }
+
+    details p {
+      margin: 10px 0 0;
+      color: #cdd4df;
+    }
+
+    /* Kurs layout */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .program-list ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+      color: #cdd4df;
+    }
+
+    .program-list li {
+      margin-bottom: 6px;
+    }
+
+    /* Form */
+    form {
+      margin-top: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #dfe5f2;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--text);
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(90, 208, 255, 0.15);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: -4px;
+    }
+
+    footer {
+      margin: 70px 0 30px;
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      background: rgba(7, 12, 22, 0.85);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    @media (max-width: 640px) {
+      .nav-bar {
+        padding: 12px 16px;
+      }
+
+      nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .hero-card {
+        padding: 22px;
+      }
+
+      section {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-bar">
+      <div class="logo">Etik Hacker Kulübü</div>
+      <nav aria-label="Ana gezinme">
+        <a href="#hakkinda">Hakkında</a>
+        <a href="#sss">SSS</a>
+        <a href="#kurs">Kurs</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-card">
+      <h1 id="hero-title">Etik Hacker Kulübü</h1>
+      <p class="subtitle">Siber Güvenlik ve Etik Hackerlık Topluluğu</p>
+      <p class="intro">
+        İstanbul Arel Üniversitesi bünyesinde etik hackerlık kültürünü güçlendiren bir topluluk. Web ve ağ güvenliği,
+        CTF senaryoları, sorumlu açıklama ve güvenlik testleriyle pratik odaklı öğrenme sunar.
+      </p>
+      <a class="btn" href="https://www.instagram.com/omer.navruz_?igsh=aTM4cDFqN3Z3dDF2&utm_source=qr" 
+      target="_blank"
+      rel="noopener noreferrer">
+      Kurs Satın Al</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="hakkinda" aria-labelledby="hakkinda-title">
+      <h2 id="hakkinda-title">Hakkında</h2>
+      <p>Kulübümüz, etik hackerlık ilkeleri doğrultusunda güvenlik farkındalığını artırmayı, sorumlu açıklama kültürünü yaygınlaştırmayı ve öğrencilere uygulamalı deneyim kazandırmayı amaçlar.</p>
+      <p>Misyonumuz; araştıran, paylaşan ve disiplinli güvenlik profesyonelleri yetiştirmek. Vizyonumuz; İstanbul Arel Üniversitesi'ni siber güvenlikte öncü ve güvenilir bir ekosistem haline getirmek.</p>
+      <div class="features" role="list">
+        <div class="card" role="listitem">
+          <h3>Atölyeler</h3>
+          <p>Temel/ileri seviye güvenlik araçları, analiz ve lab çalışmaları.</p>
+        </div>
+        <div class="card" role="listitem">
+          <h3>CTF ve Uygulama</h3>
+          <p>Gerçekçi senaryolarla bayrak avı, kod inceleme, zafiyet analizi.</p>
+        </div>
+        <div class="card" role="listitem">
+          <h3>Topluluk ve Mentorluk</h3>
+          <p>Mentor eşliğinde ilerleme, eşler arası öğrenme ve iş birlikleri.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sss" aria-labelledby="sss-title">
+      <h2 id="sss-title">SSS</h2>
+      <details>
+        <summary>Kulübe kimler katılabilir?</summary>
+        <p>İstanbul Arel Üniversitesi öğrencileri ve siber güvenliğe ilgi duyan herkes katılabilir.</p>
+      </details>
+      <details>
+        <summary>Başlangıç seviyesinde katılabilir miyim?</summary>
+        <p>Evet, temel seviye eğitimler ve mentorluk ile başlangıçtan itibaren destek sağlanır.</p>
+      </details>
+      <details>
+        <summary>Etkinlikler ne sıklıkta?</summary>
+        <p>Atölyeler ve CTF oturumları aylık programla; ek seminerler dönemlik planlanır.</p>
+      </details>
+      <details>
+        <summary>Etik hackerlık yasal mı?</summary>
+        <p>Sorumlu açıklama ve yetkilendirilmiş testler kapsamında tamamen yasal çerçevede çalışılır.</p>
+      </details>
+      <details>
+        <summary>Ne öğreneceğim?</summary>
+        <p>Web/ağ güvenliği temelleri, zafiyet analizi, exploit geliştirme pratikleri ve raporlama.</p>
+      </details>
+    </section>
+
+    <section id="kurs" aria-labelledby="kurs-title">
+      <h2 id="kurs-title">Kurs / Eğitim Programı</h2>
+      <p>Teoriden pratiğe uzanan modüler eğitimle temel kavramları öğrenir, laboratuvar ve CTF görevleriyle gerçekçi senaryolarda kendinizi test edersiniz.</p>
+
+      <div class="program-grid">
+        <div class="card program-list">
+          <h3>Başlangıç Modülü</h3>
+          <ul>
+            <li>Siber güvenliğe giriş ve etik ilkeler</li>
+            <li>Ağ temelleri ve protokol analizi</li>
+            <li>Linux/CLI hızlandırma</li>
+            <li>Temel kriptoloji ve hash kavramları</li>
+            <li>OWASP Top 10'a genel bakış</li>
+          </ul>
+        </div>
+        <div class="card program-list">
+          <h3>Uygulama Modülü</h3>
+          <ul>
+            <li>Web uygulama testleri ve raporlama</li>
+            <li>Ağ zafiyet taramaları ve sertleştirme</li>
+            <li>CTF pratikleri (web, pwn, forensics)</li>
+            <li>Reverse engineering giriş</li>
+            <li>Sorumlu açıklama süreçleri</li>
+          </ul>
+        </div>
+      </div>
+
+     <form>
+  <div class="form-grid">
+    <div>
+      <label for="name">Ad Soyad</label>
+      <input type="text" id="name">
+    </div>
+
+    <div>
+      <label for="email">E-posta</label>
+      <input type="email" id="email">
+    </div>
+  </div>
+
+  <div>
+    <label for="message">Mesajınız</label>
+    <textarea id="message"></textarea>
+  </div>
+
+  <button class="btn">Gönder</button>
+     </form>
+
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2025 Etik Hacker Kulübü — İstanbul Arel Üniversitesi</div>
+    <div>Bu site eğitim amaçlı hazırlanmıştır.</div>
+  </footer>
+</body>
+</html>
